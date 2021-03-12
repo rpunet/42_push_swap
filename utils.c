@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:18:08 by rpunet            #+#    #+#             */
-/*   Updated: 2021/03/06 18:23:13 by rpunet           ###   ########.fr       */
+/*   Updated: 2021/03/12 12:26:46 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int	ft_atoi_error(const char *str)
 	{
 		if (!ft_isdigit(*str))
 		{
-			ft_putstr_fd("Error\n", 1);
-			exit(1);
+			ft_exit("Error\n");
 		}
 		num = 10 * num + *str - '0';
 		str++;
@@ -54,16 +53,21 @@ void	print_stack(t_list *a)
 
 void	ft_exit(char *str)
 {
-	ft_putstr_fd(str, 0);
-	exit(0);
+	ft_putstr_fd(str, 1);
+	exit(1);
 }
 
-void	parse_argv(char *arg, t_list **a)
+void	parse_argv(char *arg, t_list **a, int *bonus_opt)
 {
 	char	**args;
 	char	**aux;
 	int		*n;
 
+	if (!ft_strcmp(arg, "-v"))
+	{
+		*bonus_opt = 1;
+		return ;
+	}
 	args = ft_split(arg, ' ');
 	aux = args;
 	while (*args)
@@ -99,7 +103,7 @@ void	check_dup(int n, t_list *a)
 	while (a)
 	{
 		if (*(int *)(a->content) == n)
-			ft_exit("ErrorDUPLICA\n");
+			ft_exit("Error\n");
 		a = a->next;
 	}
 }
@@ -125,15 +129,3 @@ int		ft_check_sort(t_list *a, t_list *b)
 	return (1);
 }
 
-int		ft_check_pivot(t_list *a, int pivot)
-{
-	if (!a)
-		return (-1);
-	while (a)
-	{
-		if (*(int*)(a->content) <= pivot)
-			return (0);
-		a = a->next;
-	}
-	return (1);
-}

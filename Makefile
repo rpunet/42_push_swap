@@ -6,19 +6,61 @@
 #    By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/03 19:49:44 by rpunet            #+#    #+#              #
-#    Updated: 2021/03/04 13:17:50 by rpunet           ###   ########.fr        #
+#    Updated: 2021/03/11 22:06:44 by rpunet           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME 		= checker
-SRCS		= checker.c
-LIBFT_PATH	= ../libftPLUS/
+NAME_CH		= checker
+NAME_PS 	= push_swap
+CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
+CC		= gcc
+SRCS		= operations.c utils.c lists.c sorts.c ft_quick_sort.c medium_sort.c operations_buffer.c
+SRCS_CH		= $(SRCS) checker.c
+SRCS_PS		= $(SRCS) push_swap.c
+OBJS		= $(SRCS:.c=.o)
+INCLUDES	= -I./includes/ -I./libft/includes
+LIBFT_DIR	= libft/
+
+# ------------- colors -----------------
+
+GREEN		= \033[1;32m
+BLUE		= \033[0;34m
+RED		= \033[1;31m
+LIGHT_RED	= \033[1;31m
+GREY		= \033[1;30m
+DARK_GREY	= \033[30m
+YELLOW		= \033[1;33m
+PURPLE		= \033[1;35m
+BLUE		= \033[1;34m
+CYAN		= \033[1;36m
+COLOR_OFF	= \033[0m
 
 
-all: clean
-	gcc -Wall -Wextra -Werror -g -fsanitize=address ${SRCS} -I . -L $(LIBFT_PATH) -lft -o ${NAME}
+all: $(NAME_PS) $(NAME_CH) 
+
+$(NAME_CH): $(OBJS_CH)
+	@echo "$(BLUE)Building libraries...$(COLOR_OFF)"
+	@make -C $(LIBFT_DIR)
+	@$(CC) $(CFLAGS) ${SRCS_CH} $(INCLUDES) -L $(LIBFT_DIR) -lft -o ${NAME_CH}
+	@echo "$(GREEN)[Checker BUILT]$(COLOR_OFF)"	
+
+$(NAME_PS): $(OBJS_PS)
+	@echo "$(BLUE)Building libraries...$(COLOR_OFF)"
+	@make -C $(LIBFT_DIR)
+	@$(CC) $(CFLAGS) ${SRCS_PS} $(INCLUDES) -L $(LIBFT_DIR) -lft -o ${NAME_PS}
+	@echo "$(GREEN)[Push_swap BUILT]$(COLOR_OFF)"	
 
 clean:
-		@rm -f $(NAME)
+	@make clean -C $(LIBFT_DIR)
+	@rm -f $(OBJS)
+	@echo "$(GREY)[Proyect objects removed]$(COLOR_OFF)"
+
+fclean: clean
+	@make fclean -C $(LIBFT_DIR)
+	@rm -f $(NAME_CH) $(NAME_PS)
+	@echo "$(RED)[All cleared]$(COLOR_OFF)"
+
+re: fclean all
+	
 

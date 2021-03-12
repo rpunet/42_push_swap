@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 18:06:23 by rpunet            #+#    #+#             */
-/*   Updated: 2021/03/05 20:21:55 by rpunet           ###   ########.fr       */
+/*   Updated: 2021/03/12 12:28:02 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,20 +79,6 @@ void	ft_lstswap(t_list **s)
 		(*s)->next = tmp->next;
 		tmp->next = *s;
 		*s = tmp;
-	}
-}
-
-void	ft_lstadd_front(t_list **alst, t_list *new)
-{
-	if (!*alst)
-	{
-		*alst = new;
-		return ;
-	}
-	if (new && alst)
-	{
-		new->next = *alst;
-		*alst = new;
 	}
 }
 
