@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 12:32:20 by rpunet            #+#    #+#             */
-/*   Updated: 2021/03/12 20:39:51 by rpunet           ###   ########.fr       */
+/*   Updated: 2021/03/12 11:53:22 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ typedef struct	s_struct
 	int	sign;
 }				t_struct;
 
-int				ft_printf(const char *format, ...);
+int				ft_printf(const char *format, ...)
+__attribute__ ((format (printf,1,2)));
 void			ft_format_read(t_struct *s, va_list ap, char *format);
 void			ft_tracker(t_struct *flags, va_list ap, char *format);
 void			char_convert(t_struct *s, va_list ap);

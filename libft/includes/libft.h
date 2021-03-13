@@ -6,7 +6,7 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 16:34:45 by user42            #+#    #+#             */
-/*   Updated: 2021/03/12 20:35:04 by rpunet           ###   ########.fr       */
+/*   Updated: 2021/03/09 20:52:48 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 char				*ft_strcpy(char *dst, const char *src);
 void				ft_strclr(char *s);
 char				*ft_strnew(size_t len);
-int					ft_strcmp(const char *s1, const char *s2);
+int				ft_strcmp(const char *s1, const char *s2);
 
 #endif
