@@ -6,17 +6,17 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 18:44:06 by rpunet            #+#    #+#             */
-/*   Updated: 2021/03/12 12:05:00 by rpunet           ###   ########.fr       */
+/*   Updated: 2021/03/12 23:13:18 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 void	ft_sort_set(t_list **a, t_list **b)
 {
 	t_buff	*buffer;
 
-	buffer =  NULL;
+	buffer = NULL;
 	if (ft_check_sort(*a, NULL))
 		return ;
 	if (ft_lstsize(*a) == 3)
@@ -24,41 +24,13 @@ void	ft_sort_set(t_list **a, t_list **b)
 	if (ft_lstsize(*a) < 6)
 		ft_insertion_sort(a, b);
 	else if (ft_lstsize(*a) < 185)
-		ft_wtf(a, b);
+		ft_insertion_part_sort(a, b);
 	else
 	{
 		ft_quick_sort(a, b, ft_lstsize(*a), &buffer);
-		print_short_buff(buffer);
+		print_short_buff(buffer, 0, 0);
 		ft_buffclear(&buffer);
 	}
-}
-
-void	ft_insertion_sort(t_list **a, t_list **b)
-{
-	t_list	*min;
-	int		pos = 0;
-	int		size;
-	int		cont = 0;
-
-	size = ft_lstsize(*a);
-	while (*a)
-	{
-		min = ft_lst_min(*a, &pos);
-		while (*a != min)
-		{
-			if (pos > (float)size / 2)
-				rra(a, b, 1);
-			else
-				ra(a, b, 1);
-		}
-		if (ft_check_sort(*a, NULL))
-			break;
-		pb(a, b, 1);
-		size -= 1;
-		cont++;
-	}
-	while (cont--)
-		pa(a, b, 1);
 }
 
 int		*get_3values(int *ret, int *min, int *max, t_list *a)
@@ -98,3 +70,31 @@ void	ft_simple3_sort(t_list **a, t_list **b)
 	rra(a, b, 1);
 }
 
+void	ft_insertion_sort(t_list **a, t_list **b)
+{
+	t_list	*min;
+	int		pos;
+	int		size;
+	int		cont;
+
+	cont = 0;
+	size = ft_lstsize(*a);
+	while (*a)
+	{
+		min = ft_lst_min(*a, &pos);
+		while (*a != min)
+		{
+			if (pos > (float)size / 2)
+				rra(a, b, 1);
+			else
+				ra(a, b, 1);
+		}
+		if (ft_check_sort(*a, NULL))
+			break ;
+		pb(a, b, 1);
+		size -= 1;
+		cont++;
+	}
+	while (cont--)
+		pa(a, b, 1);
+}

@@ -6,11 +6,11 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 19:29:06 by rpunet            #+#    #+#             */
-/*   Updated: 2021/03/12 13:30:19 by rpunet           ###   ########.fr       */
+/*   Updated: 2021/03/12 19:06:04 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 char	*g_instr[] = {
 	"sa",

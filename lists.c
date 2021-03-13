@@ -6,17 +6,18 @@
 /*   By: rpunet <rpunet@student.42madrid.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 18:06:23 by rpunet            #+#    #+#             */
-/*   Updated: 2021/03/12 12:28:02 by rpunet           ###   ########.fr       */
+/*   Updated: 2021/03/12 19:23:50 by rpunet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 t_list	*ft_lst_min(t_list *a, int *pos)
 {
-	int		i = __INT_MAX__;
+	int		i;
 	t_list	*tmp;
 
+	i = __INT_MAX__;
 	tmp = a;
 	while (a)
 	{
@@ -27,7 +28,7 @@ t_list	*ft_lst_min(t_list *a, int *pos)
 	a = tmp;
 	if (pos != NULL)
 		*pos = 0;
-	while ((*(int *)(a->content) != i) )
+	while ((*(int *)(a->content) != i))
 	{
 		if (pos != NULL)
 			(*pos) = *pos + 1;
@@ -35,11 +36,13 @@ t_list	*ft_lst_min(t_list *a, int *pos)
 	}
 	return (a);
 }
+
 t_list	*ft_lst_max(t_list *a, int *pos)
 {
-	int		i = INT_MIN;
+	int		i;
 	t_list	*tmp;
 
+	i = INT_MIN;
 	tmp = a;
 	while (a)
 	{
@@ -50,7 +53,7 @@ t_list	*ft_lst_max(t_list *a, int *pos)
 	a = tmp;
 	if (pos != NULL)
 		*pos = 0;
-	while ((*(int *)(a->content) != i) )
+	while ((*(int *)(a->content) != i))
 	{
 		if (pos != NULL)
 			(*pos) = *pos + 1;
@@ -58,7 +61,6 @@ t_list	*ft_lst_max(t_list *a, int *pos)
 	}
 	return (a);
 }
-
 
 void	ft_clear_stack(t_list **a, t_list **b)
 {
@@ -82,13 +84,12 @@ void	ft_lstswap(t_list **s)
 	}
 }
 
-
 t_list	*ft_lstpop(t_list **top)
 {
 	t_list	*tmp;
 
 	if (*top == NULL)
-		return NULL;
+		return (NULL);
 	tmp = *top;
 	*top = (*top)->next;
 	tmp->next = NULL;
